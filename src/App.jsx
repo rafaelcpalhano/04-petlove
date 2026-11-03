@@ -1,13 +1,15 @@
 
 import './App.css'
 
+ import Header from "./components/Header/index"
+
 function App() {
 
+ 
 
   return (
     <>
-      <h1>Pet Love</h1>
-      <p>Adotando Melhores Amigos :D</p>
+    <Header />
     </>
   )
 }
