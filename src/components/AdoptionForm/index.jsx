@@ -1,20 +1,10 @@
 import { useForm} from "react-hook-form";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import "./adoption-form.css"
+import schema from "../../libs/validations";
 
-const schema = z.object({
-  petId: z.string().min(1, "Escolha pelo menos um pet!"),
-  name: z.string().min(2, "Digite seu nome completo!"),
-  email: z.email("Digite um e-mail válido!"),
-  whatsapp: z.string().min(1, "Use o DDD, e os nove dígitos!"),
-  birthDate: z.string().min(1, "Informe a data de nascimento!"),
-  housing: z.string().min(1, "Escolha uma moradia!"),
-  reason: z.string().min(20, "Conte um pouco..."),
-  terms: z.literal(true, "Aceite os termos!"),
 
-})
 
 export default function AdoptionForm({ pets}) {
   const { register, handleSubmit, formState: { errors}, } = useForm({resolver: zodResolver(schema)});
@@ -69,7 +59,7 @@ export default function AdoptionForm({ pets}) {
   <input id="whatsapp" name ="whatsapp" type="tel"  {...register("whatsapp")}/>
   <p className="hint">Com DDD. Pode usar espaço espaço, hifen e parênteses</p>
   {
-    errors.whasapp && (
+    errors.whatsapp && (
       <p className="error">{errors.whatsapp.message}</p>
     )
   }
@@ -125,5 +115,7 @@ export default function AdoptionForm({ pets}) {
 <button type="submit">Enviar interesse </button>
 
     </form>
+    
   )
+ 
 }
